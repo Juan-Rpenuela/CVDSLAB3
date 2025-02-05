@@ -17,9 +17,9 @@ Que nos genero la siguiente estructura
 
 ### Agregar Dependencia Junit5
 
-La dependencia utilizada fue la **Junit Jupiter API 5.11.4**
+La dependencia utilizada fue **Junit Jupiter API 5.11.4**
 
-![Version](Images/JunitVersion)
+![Version](Images/JunitVersion.png)
 
 Esta se decidio porque es la penultima versión, por lo cual en caso de encontrar un error, posee mas documentación e información al respecto comparado con la versión mas reciente.
 
@@ -51,7 +51,7 @@ Las cuales tambien se recrearon en la carpeta de *test* con el fin de poder real
 
 ### Pruebas Unitarias y TDD
 
-### Crear
+### Crear Clase de Prueba
 
 #### Pruebas Asociadas a _Book_
 
@@ -59,3 +59,20 @@ Las cuales tambien se recrearon en la carpeta de *test* con el fin de poder real
 
 #### Pruebas Asociadas a _User_
 
+### Cobertura
+
+La dependencia utilizada de jacoco fue **JaCoCo Maven Plugin 0.8.12**
+
+![Jacoco](Images/JacocoVersion.png)
+
+Ahora a realizar la respectiva compilación del proyecto
+
+![Compilacion](Images/[FALTA])
+
+Una vez compilado, procedemos a revisar que la cobertura fuera exitosa, la cual debe ser mayor al 80% para confirmar el exitoso desarrollo del laboratorio.
+
+![Cobertura](Images/[FALTA])
+
+### Sonarqube
+
+[INSERTE UN CHINGO DE FOTOS AQUI]
