@@ -30,19 +30,20 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldCreateNewBook() {
+    public void shouldCreateNewBookIfBookDoesNotExist() {
         boolean verification = library.addBook(book);
         assertTrue(verification);
         assertEquals(library.getBooks().get(book), 1);
     }
 
     @Test
-    public void shouldIncreaseAmountBy1() {
+    public void shouldIncreaseAmountBy1IfBookExists() {
         library.addBook(book);
         library.addBook(book);
         assertEquals(library.getBooks().get(book), 2);
     }
 
+    
     @Test
     public void shouldLoanBookIfAvailable() {
 
