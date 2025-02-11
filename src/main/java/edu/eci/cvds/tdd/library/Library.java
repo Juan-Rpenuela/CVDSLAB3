@@ -2,8 +2,10 @@ package edu.eci.cvds.tdd.library;
 
 import edu.eci.cvds.tdd.library.book.Book;
 import edu.eci.cvds.tdd.library.loan.Loan;
+import edu.eci.cvds.tdd.library.loan.LoanStatus;
 import edu.eci.cvds.tdd.library.user.User;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,6 +83,15 @@ public class Library {
      */
     public Loan loanABook(String userId, String isbn) {
         // TODO Implement the login of loan a book to a user based on the UserId and the
+        if (this.findUser(userId) != null && this.findBook(isbn) != null && this.books.get(findBook(isbn)) > 0) {
+            Loan loan = new Loan(this.findBook(isbn),this.findUser(userId), LocalDateTime.now(), LoanStatus.ACTIVE,LocalDateTime.now());
+            if (!comprobateLoan(loan)) {
+                loans.add(loan);
+                books.put (this.findBook(isbn),this.books.get(findBook(isbn)) - 1);
+                return loan;
+            }
+        }
+        else {return null;}
         // isbn.
         return null;
     }
@@ -106,4 +117,33 @@ public class Library {
         return users.add(user);
     }
 
+    private User findUser(String userId) {
+        User user = null;
+        for (User u : users) {
+            if (u.getId().equals(userId)) {
+                user = u;
+                break;
+            }
+        }
+        return user;
+    }
+
+    private Book findBook(String isbn) {
+        Book book = null;
+        for (Book b : books.keySet()) {
+            if (b.getIsbn().equals(isbn)) {
+                book = b;
+                break;
+            }
+        }
+        return book;
+    }
+    private boolean comprobateLoan(Loan loan) {
+        for (Loan l : loans) {
+            if (l.getUser().getId().equals(loan.getUser().getId()) && l.getBook().getIsbn().equals(loan.getBook().getIsbn())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
