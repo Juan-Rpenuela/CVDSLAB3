@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.eci.cvds.tdd.library.book.Book;
@@ -18,13 +19,13 @@ import edu.eci.cvds.tdd.library.user.User;
 
 public class LibraryTest {
 
-    private static Library library;
-    private static Book book;
-    private static User user;
-    private static User anotherUser;
+    private Library library;
+    private Book book;
+    private User user;
+    private User anotherUser;
 
-    @BeforeAll
-    public static void setUp() {
+    @BeforeEach
+    public void setUp() {
 
         library = new Library();
         book = new Book("Moon Knight: white, black & blood", "Jonathan Hickman", "9781302946043");
