@@ -48,7 +48,6 @@ public class Library {
      * operation is successful false otherwise.
      *
      * @param book The book to store in the map.
-     *
      * @return true if the book was stored false otherwise.
      */
     public boolean addBook(Book book) {
@@ -78,20 +77,20 @@ public class Library {
      *
      * @param userId id of the user.
      * @param isbn   book identification.
-     *
      * @return The new created loan.
      */
     public Loan loanABook(String userId, String isbn) {
         // TODO Implement the login of loan a book to a user based on the UserId and the
         if (this.findUser(userId) != null && this.findBook(isbn) != null && this.books.get(findBook(isbn)) > 0) {
-            Loan loan = new Loan(this.findBook(isbn),this.findUser(userId), LocalDateTime.now(), LoanStatus.ACTIVE,LocalDateTime.now());
+            Loan loan = new Loan(this.findBook(isbn), this.findUser(userId), LocalDateTime.now(), LoanStatus.ACTIVE, LocalDateTime.now());
             if (!comprobateLoan(loan)) {
                 loans.add(loan);
-                books.put (this.findBook(isbn),this.books.get(findBook(isbn)) - 1);
+                books.put(this.findBook(isbn), this.books.get(findBook(isbn)) - 1);
                 return loan;
             }
+        } else {
+            return null;
         }
-        else {return null;}
         // isbn.
         return null;
     }
@@ -104,12 +103,15 @@ public class Library {
      * date should be the current date, validate that the loan exist.
      *
      * @param loan loan to return.
-     *
      * @return the loan with the RETURNED status.
      */
     public Loan returnLoan(Loan loan) {
-        // TODO Implement the login of loan a book to a user based on the UserId and the
-        // isbn.
+        if (comprobateLoan(loan) && loan.getStatus() == LoanStatus.ACTIVE) {
+            loan.setReturnDate(LocalDateTime.now());
+            books.put(loan.getBook(), this.books.get(loan.getBook()) + 1);
+            loan.setStatus(LoanStatus.RETURNED);
+            return loan;
+        }
         return null;
     }
 
@@ -138,6 +140,7 @@ public class Library {
         }
         return book;
     }
+
     private boolean comprobateLoan(Loan loan) {
         for (Loan l : loans) {
             if (l.getUser().getId().equals(loan.getUser().getId()) && l.getBook().getIsbn().equals(loan.getBook().getIsbn())) {

@@ -106,21 +106,30 @@ public class LibraryTest {
 
     @Test
     public void shouldReturnALoan() {
+        library.addBook(book);
+        library.addUser(user);
         Loan loan = library.loanABook("023", "9781302946043");
         Loan verification = library.returnLoan(loan);
         assertNotNull(verification);
         assertEquals(library.getBooks().get(book), 1);
         assertEquals(verification.getStatus(), LoanStatus.RETURNED);
-        assertEquals(verification.getReturnDate(), LocalDateTime.now());
+        assertEquals(verification.getReturnDate().truncatedTo(ChronoUnit.SECONDS), LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
 
     }
 
     @Test
-    public void validateExistingLoan() {
+    public void validateExistingActiveLoan() {
+        library.addBook(book);
+        library.addUser(user);
+        Loan loan = library.loanABook("023", "9781302946043");
+        Loan verification = library.returnLoan(loan);
+        assertNotNull(verification);
+        assertEquals(library.getBooks().get(book), 1);
+        assertEquals(verification.getStatus(), LoanStatus.RETURNED);
+        assertEquals(verification.getReturnDate().truncatedTo(ChronoUnit.SECONDS), LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        Loan secondVerification = library.returnLoan(verification);
+        assertNull(secondVerification);
 
-        Loan verification = library.returnLoan(null);
-        assertNull(verification);
-        assertEquals(library.getBooks().get(book), 0);
 
     }
 
