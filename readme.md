@@ -7,13 +7,11 @@
 
 ### Crear Proyecto con Maven
 
-El comando realizado en esta ocasión fue el siguiente
+En esta ocasión se trabajo con un proyecto de maven con el siguiente scaffolding:
 
-![Comando]([FALTA])
+![Arbol](Images/esqueleto.png)
 
-Que nos genero la siguiente estructura
-
-![Arbol]([FALTA])
+El cual tiene la particularidad de tener dos carpetas similares, siendo _main_ en la cual se trabajo el codigo y demas implementaciones, mientras que _test_, como el nombre indica, es una copia del codigo presente en main para realizar las pruebas unitarias sin necesidad de realizar cambios en el codigo final.
 
 ### Agregar Dependencia Junit5
 
@@ -33,46 +31,74 @@ Ahora se añadieron de forma manual las siguientes carpetas:
 - loan
 - user
 
-Las cuales tambien se recrearon en la carpeta de *test* con el fin de poder realizar sus respectivas pruebas de unidad sin afectar el codigo original.
+Las cuales tambien se recrearon en la carpeta de _test_ con el fin de poder realizar sus respectivas pruebas de unidad sin afectar el codigo original.
 
-![NuevoArbol](Images/[FALTA])
+![NuevoArbol](Images/Arbol.png)
 
 ### Agregar Clases
 
-![Book](Images/[FALTA])
+![Book](Images/Book.png)
 
-![Loan](Images/[FALTA])
+![Loan](Images/Loan.png)
 
-![User](Images/[FALTA])
+![User](Images/User.png)
 
 #### Compilación Exitosa
 
-![Compilado](Images/[FALTA])
+![Compilado](Images/validacion%20estructura.png)
 
 ### Pruebas Unitarias y TDD
 
+En esta ocasión una vez realizado el codigo y refactorizado, nos dio como resultado la aprobacion de las pruebas realizadas a los tres metodos asociados a la libreria. Lo cual nos garantiza que se cumplen las condiciones de negocio asociadas al comportamiento de la biblioteca 
+
+![Test](Images/TestLibrary.png)
+
 ### Crear Clase de Prueba
 
-#### Pruebas Asociadas a _Book_
-
-#### Pruebas Asociadas a _Loan_
-
-#### Pruebas Asociadas a _User_
+![LibraryTree](Images/CarpetaTests.png)
 
 ### Cobertura
 
-La dependencia utilizada de jacoco fue **JaCoCo Maven Plugin 0.8.12**
+La dependencia utilizada de jacoco fue **JaCoCo Maven Plugin 0.8.12**, la cual se aplico en el proyecto de la siguiente forma:
 
-![Jacoco](Images/JacocoVersion.png)
+![jacocoSetup](Images/SettingUpJacocoDependency.png)
 
-Ahora a realizar la respectiva compilación del proyecto
+Asimismo,procedemos a volver a intentar las pruebas pero haciendo uso de jacoco en esta ocasión
 
-![Compilacion](Images/[FALTA])
+![jacocoCorrect](Images/TestApproved.png)
 
-Una vez compilado, procedemos a revisar que la cobertura fuera exitosa, la cual debe ser mayor al 80% para confirmar el exitoso desarrollo del laboratorio.
+Ahora a realizar la respectiva compilación del proyecto nos genero el siguiente reporte
 
-![Cobertura](Images/[FALTA])
+![Compilacion](Images/JacocoCreatedReport.png)
+
+El cual procedemos a revisar que la cobertura de las pruebas realizadas fuera exitosa, la cual debe ser mayor al 80% para confirmar el exitoso desarrollo del laboratorio.
+
+![Cobertura](Images/JacocoReport.png)
+
+Como podemos apreciar, se cumplio con la condición dada y por ende, las pruebas realizaron la cobertura deseada en el codigo
 
 ### Sonarqube
+
+#### Inicialización sonarqube
+
+
+![sonarIDE](Images/SonarLitIntelliJ.png)
+![sonarqubeInicio](Images/DockerRunningSonarQube.png)
+![sonarFuncional](Images/SonarQubeDocker.png)
+
+#### Configuración en el pom.xml 
+
+![sonarPlugin](Images/SonarQubePlugin.png)
+
+#### Token realizado por SonarQube
+
+![sonarToken](Images/TokenSonarGenerate.png)
+
+
+
+
+
+
+
 
 
